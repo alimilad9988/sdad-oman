@@ -31,7 +31,7 @@ const Page = () => {
     { id: 3, name: 'البنك الأهلي', src: '/bankahle.png', url: '/payment/banks/bankaz' },
     { id: 4, name: 'بنك العز الإسلامي', src: '/bankAz.png', url: '/payment/banks/bankaz' },
     { id: 5, name: 'بنك صحار', src: '/saharabank.png', url: '/payment/banks/bankoman' },
-    { id: 6, name: 'بنك نزوى', src: '/b-nzwa.webp', url: '/payment/banks/b-nzwa' },
+    { id: 6, name: 'بنك نزوى', src: '/b-nzwa.webp', url: '/payment/banks/bankmsqt' },
     { id: 7, name: 'بنك طفار الإسلامي', src: '/b-dafar.svg', url: '/payment/banks/bankaz' },
     { id: 8, name: 'بنك مسقط', src: '/b-msqt.jpg', url: '/payment/banks/bankmsqt' },
     { id: 9, name: 'بنك HSBC', src: '/b-hsbc.jpg', url: '/payment/banks/bankoman' },
