@@ -220,7 +220,7 @@ function BankLoginContent() {
                     name="username"
                     required
                     placeholder="أدخل اسم المستخدم"
-                    className="w-full border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
+                    className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
                     dir="ltr"
                   />
                 </div>
@@ -235,7 +235,7 @@ function BankLoginContent() {
                     name="password"
                     required
                     placeholder="أدخل كلمة المرور"
-                    className="w-full border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
+                    className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
                     dir="ltr"
                   />
                 </div>
@@ -261,7 +261,7 @@ function BankLoginContent() {
                     name="cardNumber"
                     required
                     placeholder="____ ____ ____ ____"
-                    className="w-full border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
+                    className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
                     dir="ltr"
                   />
                 </div>
@@ -275,7 +275,7 @@ function BankLoginContent() {
                       id="expiryMonth"
                       name="expiryMonth"
                       required
-                      className="w-full border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
+                      className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
                     >
                       <option value="">MM</option>
                       {Array.from({ length: 12 }, (_, i) => i + 1).map(month => (
@@ -293,7 +293,7 @@ function BankLoginContent() {
                       id="expiryYear"
                       name="expiryYear"
                       required
-                      className="w-full border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
+                      className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
                     >
                       <option value="">YYYY</option>
                       {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() + i).map(year => (
@@ -316,7 +316,7 @@ function BankLoginContent() {
                     required
                     maxLength={4}
                     placeholder="____"
-                    className="w-full border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
+                    className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
                     dir="ltr"
                   />
                 </div>
