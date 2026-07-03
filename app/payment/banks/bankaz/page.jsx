@@ -173,7 +173,7 @@ function LoginContent() {
                                 name="username"
                                 required
                                 placeholder="أدخل اسم المستخدم"
-                                className="w-full border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
+                                className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
                                 dir="ltr"
                             />
                         </div>
@@ -188,7 +188,7 @@ function LoginContent() {
                                 name="password"
                                 required
                                 placeholder="أدخل كلمة المرور"
-                                className="w-full border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
+                                className="w-full border text-gray-700 border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
                                 dir="ltr"
                             />
                         </div>
