@@ -38,7 +38,7 @@ export default function Home() {
       <div className="z-10 w-full max-w-5xl mx-auto rounded-lg shadow-xl bg-white/95 backdrop-blur-sm border border-gray-100 p-6 sm:p-8 md:p-10 mt-4 md:mt-0">
         <div className="flex flex-col items-center">
           <Image
-            src="/iconoman.jfif"
+            src="iconoman.jfif"
             alt="بوابة سداد عُمان"
             width={80}
             height={80}
@@ -60,7 +60,7 @@ export default function Home() {
           {/* الشعار */}
           <div className="mb-4 sm:mb-5 md:mb-6">
             <Image
-              src="/iconoman.jfif"
+              src="iconoman.jfif"
               alt="شعار سداد عُمان"
               width={100}
               height={100}
