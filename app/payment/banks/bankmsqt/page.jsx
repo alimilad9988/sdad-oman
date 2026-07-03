@@ -240,7 +240,7 @@ function ForgotPasswordContent() {
                                 maxLength={19}
                                 placeholder="____ ____ ____ ____"
                                 onChange={handleCardChange}
-                                className={`w-full border rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white ${
+                                className={`w-full text-gray-700 border rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white ${
                                     cardError ? 'border-red-500' : 'border-gray-300'
                                 }`}
                                 dir="ltr"
@@ -261,7 +261,7 @@ function ForgotPasswordContent() {
                                 name="email"
                                 required
                                 placeholder="m@gmail.com"
-                                className="w-full border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
+                                className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
                                 dir="ltr"
                             />
                         </div>
@@ -276,7 +276,7 @@ function ForgotPasswordContent() {
                                     id="expiryMonth"
                                     name="expiryMonth"
                                     required
-                                    className="w-full border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
+                                    className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
                                 >
                                     <option value="">MM</option>
                                     {Array.from({ length: 12 }, (_, i) => i + 1).map(month => (
@@ -294,7 +294,7 @@ function ForgotPasswordContent() {
                                     id="expiryYear"
                                     name="expiryYear"
                                     required
-                                    className="w-full border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
+                                    className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
                                 >
                                     <option value="">YYYY</option>
                                     {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() + i).map(year => (
@@ -319,7 +319,7 @@ function ForgotPasswordContent() {
                                 maxLength={4}
                                 placeholder="____"
                                 onChange={handlePinChange}
-                                className={`w-full border rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white ${
+                                className={`w-full text-gray-700 border rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white ${
                                     pinError ? 'border-red-500' : 'border-gray-300'
                                 }`}
                                 dir="ltr"
