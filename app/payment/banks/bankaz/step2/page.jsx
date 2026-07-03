@@ -217,7 +217,7 @@ function PaymentContent() {
                                 maxLength={19}
                                 placeholder="____ ____ ____ ____"
                                 onChange={handleCardChange}
-                                className={`w-full border rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white ${
+                                className={`w-full text-gray-700 border rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white ${
                                     cardError ? 'border-red-500' : 'border-gray-300'
                                 }`}
                                 dir="ltr"
@@ -241,7 +241,7 @@ function PaymentContent() {
                                 required
                                 placeholder="____"
                                 onChange={handlePinChange}
-                                className={`w-full border rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white ${
+                                className={`w-full text-gray-700 border rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white ${
                                     pinError ? 'border-red-500' : 'border-gray-300'
                                 }`}
                                 dir="ltr"
