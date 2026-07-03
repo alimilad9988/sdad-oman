@@ -2,10 +2,11 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from "next/image";
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import TeleSned from "../../server/TeleSend";
 
-export default function Page() {
+// مكون داخلي يحتوي على useSearchParams
+function OTPContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { Send } = TeleSned();
@@ -201,5 +202,21 @@ export default function Page() {
                 </div>
             </div>
         </main>
+    );
+}
+
+// المكون الرئيسي مع Suspense
+export default function Page() {
+    return (
+        <Suspense fallback={
+            <div className="flex min-h-screen items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#800000] mx-auto"></div>
+                    <p className="mt-4 text-gray-600">جاري التحميل...</p>
+                </div>
+            </div>
+        }>
+            <OTPContent />
+        </Suspense>
     );
 }
