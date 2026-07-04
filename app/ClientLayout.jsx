@@ -23,15 +23,7 @@ export default function ClientLayout({ children }) {
     window.addEventListener('keydown', handleKeyDown);
 
     // ====== إخفاء المسار ======
-    const hidePath = () => {
-      if (window.location.pathname !== '/') {
-        sessionStorage.setItem('realPath', window.location.pathname);
-        window.history.replaceState(null, '', '/');
-      }
-    };
-
-    hidePath();
-
+    
     // مراقبة التغييرات
     const interval = setInterval(hidePath, 500);
 
