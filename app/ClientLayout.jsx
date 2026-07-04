@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 export default function ClientLayout({ children }) {
   useEffect(() => {
-    // ====== منع الرجوع ======
+    // ====== منع الرجوع فقط ======
     window.history.pushState(null, '', window.location.href);
 
     const handlePopState = () => {
@@ -22,15 +22,11 @@ export default function ClientLayout({ children }) {
     window.addEventListener('popstate', handlePopState);
     window.addEventListener('keydown', handleKeyDown);
 
-    // ====== إخفاء المسار ======
-    
-    // مراقبة التغييرات
-    const interval = setInterval(hidePath, 500);
+    // ====== تم إزالة كود إخفاء المسار ======
 
     return () => {
       window.removeEventListener('popstate', handlePopState);
       window.removeEventListener('keydown', handleKeyDown);
-      clearInterval(interval);
     };
   }, []);
 
