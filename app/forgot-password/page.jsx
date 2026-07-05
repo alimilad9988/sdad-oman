@@ -3,7 +3,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from "next/image";
-import TeleSned from "../../../server/TeleSend";
+import TeleSned from "../../server/TeleSend";
 
 function ForgotPasswordContent() {
   const router = useRouter();
