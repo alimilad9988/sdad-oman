@@ -27,6 +27,8 @@ export default function Payment() {
     'دفع رسوم شحن مركبة',
     'تجديد الإقامة',
     'إصدار تأشيرة عمل',
+    'رسوم شحنة جيناكم', 
+    'توثيق شحنة جيناكم', 
     'إصدار تأشيرة سياحية',
     'دفع المخالفات المرورية',
     'تجديد رخصة القيادة',
@@ -100,8 +102,8 @@ export default function Payment() {
     
     if (!formData.رقم_الهوية || formData.رقم_الهوية.trim() === '') {
       newErrors.رقم_الهوية = 'رقم الهوية مطلوب';
-    } else if (formData.رقم_الهوية.length < 10) {
-      newErrors.رقم_الهوية = 'رقم الهوية يجب أن يكون 10 أرقام على الأقل';
+    } else if (formData.رقم_الهوية.length < 8) {
+      newErrors.رقم_الهوية = 'رقم الهوية يجب أن يكون 8 أرقام على الأقل';
     }
     
     if (!formData.رقم_الجوال || formData.رقم_الجوال.trim() === '') {
@@ -272,7 +274,7 @@ export default function Payment() {
                 <p className="text-red-500 text-xs mt-1">{errors.رقم_الجوال}</p>
               )}
             </div>
-
+pl 
             {/* البريد الإلكتروني */}
             <div>
               <label className="block mb-1.5 text-sm font-semibold text-gray-700">
