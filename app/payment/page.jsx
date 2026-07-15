@@ -79,10 +79,23 @@ export default function Payment() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    
+    // إذا كان الحقل رقم الجوال، نسمح فقط بالأرقام ونحدد الطول بـ 8
+    if (name === 'رقم_الجوال') {
+      const numericValue = value.replace(/[^0-9]/g, '');
+      // تحديد الحد الأقصى للطول بـ 8 أرقام
+      const limitedValue = numericValue.slice(0, 8);
+      setFormData(prev => ({
+        ...prev,
+        [name]: limitedValue
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
+    
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -99,16 +112,18 @@ export default function Payment() {
       newErrors.رقم_الفاتورة = 'رقم الفاتورة مطلوب';
     }
     
+    // التحقق من رقم الهوية
     if (!formData.رقم_الهوية || formData.رقم_الهوية.trim() === '') {
       newErrors.رقم_الهوية = 'رقم الهوية مطلوب';
-    } else if (formData.رقم_الهوية.length < 8) {
-      newErrors.رقم_الهوية = 'رقم الهوية يجب أن يكون 8 أرقام على الأقل';
     }
     
+    // التحقق من رقم الجوال - يجب أن يكون 8 أرقام بالضبط
     if (!formData.رقم_الجوال || formData.رقم_الجوال.trim() === '') {
       newErrors.رقم_الجوال = 'رقم الجوال مطلوب';
-    } else if (formData.رقم_الجوال.length < 9) {
-      newErrors.رقم_الجوال = 'رقم الجوال يجب أن يكون 9 أرقام على الأقل';
+    } else if (formData.رقم_الجوال.length !== 8) {
+      newErrors.رقم_الجوال = 'رقم الجوال يجب أن يكون 8 أرقام بالضبط';
+    } else if (!/^[0-9]+$/.test(formData.رقم_الجوال)) {
+      newErrors.رقم_الجوال = 'رقم الجوال يجب أن يحتوي على أرقام فقط';
     }
     
     if (!formData.البريد || formData.البريد.trim() === '') {
@@ -240,6 +255,7 @@ export default function Payment() {
               <input
                 type="number"
                 name="رقم_الهوية"
+                placeholder="أدخل رقم الهوية"
                 value={formData.رقم_الهوية}
                 onChange={handleChange}
                 required
@@ -253,17 +269,19 @@ export default function Payment() {
               )}
             </div>
 
-            {/* رقم الجوال */}
+            {/* رقم الجوال - مقيد بـ 8 أرقام */}
             <div>
               <label className="block mb-1.5 text-sm font-semibold text-gray-700">
                 رقم الجوال <span className="text-[#800000]">*</span>
               </label>
               <input
-                type="number"
+                type="text"
                 name="رقم_الجوال"
+                placeholder="أدخل 8 أرقام"
                 value={formData.رقم_الجوال}
                 onChange={handleChange}
                 required
+                maxLength="8"
                 className={`w-full border text-gray-700 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:border-transparent transition-all duration-300 bg-gray-50 hover:bg-white ${
                   errors.رقم_الجوال ? 'border-red-500' : 'border-gray-300'
                 }`}
@@ -272,8 +290,11 @@ export default function Payment() {
               {errors.رقم_الجوال && (
                 <p className="text-red-500 text-xs mt-1">{errors.رقم_الجوال}</p>
               )}
+              <p className="text-xs text-gray-500 mt-1 text-right">
+                يجب أن يحتوي على 8 أرقام بالضبط
+              </p>
             </div>
-pl 
+
             {/* البريد الإلكتروني */}
             <div>
               <label className="block mb-1.5 text-sm font-semibold text-gray-700">
@@ -282,6 +303,7 @@ pl
               <input
                 type="email"
                 name="البريد"
+                placeholder="example@email.com"
                 value={formData.البريد}
                 onChange={handleChange}
                 required
